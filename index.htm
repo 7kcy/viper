@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viper</title>
+<link rel="icon" href="viper_png.png">
+
+<style>
+:root {
+  --brand: rgb(190,190,190);
+  --brand-hover: rgb(230,230,230);
+  --bg: #0a0b0d;
+  --card: #141518;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --line: rgba(190,190,190,0.25);
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0d10;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--brand-hover),
+    var(--brand)
+  );
+  border-radius: 999px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-hover);
+}
+
+/* ================= BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(255,255,255,0.08), transparent 45%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ================= DISCORD BUTTON ================= */
+.discord-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--brand);
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255,255,255,0.8);
+  transition: 0.3s ease;
+  z-index: 50;
+}
+.discord-btn:hover {
+  transform: scale(1.12);
+  color: var(--brand-hover);
+  box-shadow: 0 0 65px rgba(255,255,255,1);
+}
+
+/* ================= LAYOUT ================= */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 2rem 6rem;
+}
+
+/* ================= HERO ================= */
+.hero {
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+  border-radius: 28px;
+  background: var(--card);
+  border: 2px solid var(--brand);
+  box-shadow: 0 0 45px rgba(255,255,255,0.8);
+  animation: glow 3s infinite ease-in-out;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 28px;
+}
+
+h1 {
+  font-size: 3.6rem;
+  color: var(--brand-hover);
+}
+
+.tagline {
+  color: var(--muted);
+  margin: 1rem 0 3rem;
+}
+
+.download-btn {
+  padding: 1rem 2.6rem;
+  background: var(--brand);
+  color: #000;
+  border-radius: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 45px rgba(255,255,255,0.9);
+  transition: 0.3s ease;
+}
+.download-btn:hover {
+  background: var(--brand-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 0 85px rgba(255,255,255,1);
+}
+
+/* ================= FEATURES ================= */
+.features {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.feature {
+  position: relative;
+  background: linear-gradient(180deg, #17181c, #121316);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--line);
+  transition: 0.35s ease;
+}
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 55px rgba(255,255,255,0.45);
+}
+
+.feature-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--brand);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+/* ================= COMPARISON ================= */
+.comparison {
+  margin-top: 7rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  font-size: 0.85rem;
+}
+
+.comparison h2 {
+  font-size: 2.8rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.comparison p {
+  color: var(--muted);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.compare-card {
+  position: relative;
+  background: linear-gradient(180deg, #17181c, #121316);
+  border-radius: 22px;
+  padding: 2rem;
+  border: 1px solid var(--line);
+}
+
+.compare-card.viper {
+  border-color: var(--brand-hover);
+  box-shadow: 0 0 65px rgba(255,255,255,0.6);
+}
+
+.compare-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.compare-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--brand);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compare-list {
+  list-style: none;
+}
+
+.compare-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.compare-list li:last-child {
+  border-bottom: none;
+}
+
+.check { color: #22c55e; }
+.cross { color: #ef4444; }
+
+/* ================= MODAL ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--brand);
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 65px rgba(255,255,255,1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm {
+  background: var(--brand-hover);
+}
+.cancel {
+  background: #222;
+  color: white;
+}
+
+/* ================= ANIM ================= */
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 40px rgba(255,255,255,0.7); }
+  50% { box-shadow: 0 0 90px rgba(255,255,255,1); }
+}
+
+.discord-btn img {
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
+
+.feature-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+.compare-icon img {
+  width: 32px;
+  height: 32px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="discord-btn" id="discordBtn">
+  <img src="discord_png.png" alt="">
+</div>
+
+<div class="container">
+  <div class="hero">
+    <div class="logo">
+      <img src="viper_png.png">
+    </div>
+    <h1>Viper</h1>
+    <p class="tagline">Strike fast. Execute smarter.</p>
+    <button class="download-btn" id="downloadBtn">💻 Download for Windows</button>
+  </div>
+
+  <section class="features">
+    <div class="feature"><div class="feature-icon">⚡</div><h3>Fast Updates</h3><p>Instant improvements.</p></div>
+    <div class="feature"><div class="feature-icon">🎨</div><h3>Interface</h3><p>Clean and modern.</p></div>
+    <div class="feature"><div class="feature-icon">💎</div><h3>100% Free</h3><p>No subscriptions.</p></div>
+    <div class="feature"><div class="feature-icon">🧠</div><h3>94% UNC</h3><p>High compatibility.</p></div>
+    <div class="feature"><div class="feature-icon">🚀</div><h3>Injection</h3><p>5 second injection.</p></div>
+    <div class="feature"><div class="feature-icon"><img src="discord_png.png" alt=""></div><h3>Join our Discord</h3><p>Click the top right to join.</p></div>
+  </section>
+
+  <section class="comparison">
+    <div class="badge">COMPARISON</div>
+    <h2>Why Viper Wins</h2>
+    <p>Sharper. Faster. Cleaner.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card viper">
+        <div class="compare-header">
+          <div class="compare-icon">
+  <img src="viper_png.png" alt=""></div>
+        </div>
+        <ul class="compare-list">
+          <li><span class="check">✓</span> Free</li>
+          <li><span class="check">✓</span> Fast updates</li>
+          <li><span class="check">✓</span> Easy to use</li>
+          <li><span class="check">✓</span> High compatibility</li>
+        </ul>
+      </div>
+
+      <div class="compare-card">
+        <div class="compare-header">
+          <div class="compare-icon">❌</div><h3>Others</h3>
+        </div>
+        <ul class="compare-list">
+          <li><span class="cross">✗</span> Paid</li>
+          <li><span class="cross">✗</span> Slow updates</li>
+          <li><span class="cross">✗</span> Poor UX</li>
+          <li><span class="cross">✗</span> Limited support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>Warning</h2>
+    <p id="modalText"></p>
+    <div class="modal-actions">
+      <button class="confirm" id="confirm">Yes</button>
+      <button class="cancel" id="cancel">No</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const modalText = document.getElementById("modalText");
+const downloadBtn = document.getElementById("downloadBtn");
+const discordBtn = document.getElementById("discordBtn");
+const cancel = document.getElementById("cancel");
+const confirm = document.getElementById("confirm");
+
+let target = "";
+
+downloadBtn.onclick = () => {
+  modalText.textContent = "This will take you to an off platform download link. Continue?";
+  target = "https://gofile.io/d/nSGfKz";
+  modal.style.display = "flex";
+};
+
+discordBtn.onclick = () => {
+  modalText.textContent = "This will take you to our Discord server. Continue?";
+  target = "https://discord.gg/Y6nbNpY9Gz";
+  modal.style.display = "flex";
+};
+
+cancel.onclick = () => modal.style.display = "none";
+confirm.onclick = () => {
+  window.open(target, "_blank");
+  modal.style.display = "none";
+};
+</script>
+
+</body>
+</html>
